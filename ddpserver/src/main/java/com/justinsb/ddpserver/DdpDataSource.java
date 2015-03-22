@@ -1,7 +1,6 @@
 package com.justinsb.ddpserver;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 /**
  * The logic implementation that the DDP connection exposes

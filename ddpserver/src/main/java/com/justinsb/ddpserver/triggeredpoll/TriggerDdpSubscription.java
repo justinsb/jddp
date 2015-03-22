@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.google.gson.JsonObject;
-import com.justinsb.ddpserver.DdpMergeBox;
 import com.justinsb.ddpserver.DdpPublishContext;
 import com.justinsb.ddpserver.DdpSubscription;
 import com.justinsb.ddpserver.Jsonable;
@@ -42,6 +40,7 @@ public class TriggerDdpSubscription extends DdpSubscription {
         + sentPosition + ", stop=" + stop + "]";
   }
 
+  @Override
   public void begin() throws IOException {
     String collectionName = query.getCollectionName();
 

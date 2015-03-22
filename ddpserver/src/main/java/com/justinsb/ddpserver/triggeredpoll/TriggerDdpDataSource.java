@@ -1,7 +1,6 @@
 package com.justinsb.ddpserver.triggeredpoll;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.slf4j.Logger;
@@ -9,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -19,7 +17,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.justinsb.ddpserver.DdpDataSource;
-import com.justinsb.ddpserver.DdpMergeBox;
 import com.justinsb.ddpserver.DdpMethodResult;
 import com.justinsb.ddpserver.DdpPublish;
 import com.justinsb.ddpserver.DdpPublishContext;
@@ -63,6 +60,7 @@ public class TriggerDdpDataSource implements DdpDataSource {
         return items;
       }
 
+      @Override
       public String toString() {
         return "Query:" + collectionName;
       }

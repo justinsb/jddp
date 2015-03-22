@@ -1,6 +1,5 @@
 package com.justinsb.ddpserver.triggeredpoll;
 
-import java.io.IOException;
 import java.util.Map.Entry;
 
 import org.slf4j.Logger;
@@ -18,6 +17,7 @@ public abstract class SimpleDdpSubscription extends DdpSubscription {
     super(context);
   }
 
+  @Override
   public void begin() throws Exception {
     String collectionName = getCollectionName();
 
@@ -26,13 +26,11 @@ public abstract class SimpleDdpSubscription extends DdpSubscription {
     sendReady();
   }
 
-
   @Override
   public void recalculate() throws Exception {
     begin();
   }
-  
-  
+
   protected abstract Iterable<Entry<String, Jsonable>> getInitialItems() throws Exception;
 
 }

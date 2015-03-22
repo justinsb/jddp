@@ -7,15 +7,9 @@ import javax.websocket.server.ServerContainer;
 import javax.websocket.server.ServerEndpointConfig;
 import javax.websocket.server.ServerEndpointConfig.Configurator;
 
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
-
-import com.justinsb.ddpserver.examples.inmem.InMemoryStorage;
-import com.justinsb.ddpserver.triggeredpoll.InMemoryInvalidationSystem;
-import com.justinsb.ddpserver.triggeredpoll.TriggerDdpDataSource;
 
 public class DdpEndpoints {
   public static void register(ServletContextHandler context, DdpDataSource ddpDataSource) throws Exception {

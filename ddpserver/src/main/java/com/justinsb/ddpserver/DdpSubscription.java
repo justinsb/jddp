@@ -2,8 +2,6 @@ package com.justinsb.ddpserver;
 
 import java.io.IOException;
 
-import com.google.gson.JsonObject;
-
 /**
  * Abstract DDP subscription
  *
