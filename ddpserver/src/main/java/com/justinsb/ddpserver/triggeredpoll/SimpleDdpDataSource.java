@@ -18,54 +18,55 @@ import com.justinsb.ddpserver.DdpPublish;
 import com.justinsb.ddpserver.DdpPublishContext;
 import com.justinsb.ddpserver.DdpSession;
 import com.justinsb.ddpserver.DdpSubscription;
-import com.meteor.tracker.Computation;
-import com.meteor.tracker.Tracker;
 
 /**
  * Backend for DDP
  */
 public class SimpleDdpDataSource implements DdpDataSource {
 
-  private static final Logger log = LoggerFactory.getLogger(SimpleDdpDataSource.class);
+	private static final Logger log = LoggerFactory
+			.getLogger(SimpleDdpDataSource.class);
 
-  final Map<String, DdpMethod> ddpMethods = Maps.newHashMap();
-  final Map<String, DdpPublish> ddpPublishes = Maps.newHashMap();
+	final Map<String, DdpMethod> ddpMethods = Maps.newHashMap();
+	final Map<String, DdpPublish> ddpPublishes = Maps.newHashMap();
 
-  public void addMethod(String methodName, DdpMethod method) {
-    Preconditions.checkNotNull(method);
-    ddpMethods.put(methodName, method);
-  }
+	public void addMethod(String methodName, DdpMethod method) {
+		Preconditions.checkNotNull(method);
+		ddpMethods.put(methodName, method);
+	}
 
-  public void addPublish(String name, DdpPublish publish) {
-    Preconditions.checkNotNull(publish);
-    ddpPublishes.put(name, publish);
-  }
+	public void addPublish(String name, DdpPublish publish) {
+		Preconditions.checkNotNull(publish);
+		ddpPublishes.put(name, publish);
+	}
 
-  @Override
-  public DdpPublish getPublishFunction(DdpSession session, final String collectionName, JsonArray params)
-      throws Exception {
+	@Override
+	public DdpPublish getPublishFunction(DdpSession session,
+			final String collectionName, JsonArray params) throws Exception {
 
-    DdpPublish publish = ddpPublishes.get(collectionName);
-    if (publish != null) {
-      return publish;
-    }
+		DdpPublish publish = ddpPublishes.get(collectionName);
+		if (publish != null) {
+			return publish;
+		}
 
-    log.warn("Unknown subscription: {}", collectionName);
-    return null;
-  }
+		log.warn("Unknown subscription: {}", collectionName);
+		return null;
+	}
 
-  @Override
-  public DdpMethodResult executeMethod(final DdpSession session, final String methodId, String method, JsonArray params)
-      throws Exception {
-    DdpMethod ddpMethod = ddpMethods.get(method);
-    if (ddpMethod != null) {
-      DdpMethodContext context = new DdpMethodContext(session, methodId, method);
-      DdpMethodResult result = ddpMethod.executeMethod(context, params);
-      return result;
-    }
+	@Override
+	public DdpMethodResult executeMethod(final DdpSession session,
+			final String methodId, String method, JsonArray params)
+			throws Exception {
+		DdpMethod ddpMethod = ddpMethods.get(method);
+		if (ddpMethod != null) {
+			DdpMethodContext context = new DdpMethodContext(session, methodId,
+					method);
+			DdpMethodResult result = ddpMethod.executeMethod(context, params);
+			return result;
+		}
 
-    log.warn("Unknown method: {}", method);
-    throw new IllegalArgumentException();
-  }
+		log.warn("Unknown method: {}", method);
+		throw new IllegalArgumentException();
+	}
 
 }
